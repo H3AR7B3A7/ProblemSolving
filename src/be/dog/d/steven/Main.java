@@ -5,12 +5,12 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        int[] array = new int[]{1,100,1};
+        int[] array = new int[]{1, 100, 1};
         System.out.println(new StoneGameSolution().stoneGameVII(array)); // 1
-        array = new int[]{7,90,5,1,100,10,10,2};
+        array = new int[]{7, 90, 5, 1, 100, 10, 10, 2};
         System.out.println(new StoneGameSolution().stoneGameVII(array)); // 122
-        array = new int[]{5,3,1,4,2};
-        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 6
+        array = new int[]{5, 3, 1, 4, 2};
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 6 ???
     }
 }
 
@@ -30,10 +30,7 @@ class StoneGameSolution {
 
     int alice = 0;
     int bob = 0;
-    Boolean aliceTurn = true;
-
-    public StoneGameSolution() {
-    }
+    boolean aliceTurn = true;
 
     public int stoneGameVII(int[] stones) {
 
