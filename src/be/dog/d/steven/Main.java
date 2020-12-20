@@ -5,16 +5,12 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-
         int[] array = new int[]{1,100,1};
-        System.out.println(StoneGameSolution.stoneGameVII(array)); // 1
-        StoneGameSolution.reset();
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 1
         array = new int[]{7,90,5,1,100,10,10,2};
-        System.out.println(StoneGameSolution.stoneGameVII(array)); // 122
-        StoneGameSolution.reset();
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 122
         array = new int[]{5,3,1,4,2};
-        System.out.println(StoneGameSolution.stoneGameVII(array)); // 6 ???
-        StoneGameSolution.reset();
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 6
     }
 }
 
@@ -31,11 +27,15 @@ public class Main {
  * return the difference in Alice and Bob's score if they both play optimally.
  */
 class StoneGameSolution {
-    static int alice = 0;
-    static int bob = 0;
-    static Boolean aliceTurn = true;
 
-    public static int stoneGameVII(int[] stones) {
+    int alice = 0;
+    int bob = 0;
+    Boolean aliceTurn = true;
+
+    public StoneGameSolution() {
+    }
+
+    public int stoneGameVII(int[] stones) {
 
         if (stones.length < 2) {
             return alice - bob;
@@ -59,14 +59,7 @@ class StoneGameSolution {
                 bob += Arrays.stream(stones).sum();
                 aliceTurn = true;
             }
-
         }
         return stoneGameVII(stones);
-    }
-
-    public static void reset(){
-        StoneGameSolution.alice = 0;
-        StoneGameSolution.bob = 0;
-        StoneGameSolution.aliceTurn = true;
     }
 }
