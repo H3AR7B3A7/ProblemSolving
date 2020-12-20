@@ -1,5 +1,5 @@
 # Problem Solving
-I grouped the solutions in different maps:
+I grouped the solutions, and their test cases into different maps:
 - **Strings**: Solutions to string related problems
 - **Numbers**: Solutions to number related problems
 - **Recursive**: Recursive solutions
