@@ -5,3 +5,6 @@ I grouped solutions to the problems in this repository in different maps:
 - **Recursive**: Recursive solutions
 - **Dynamic**: Dynamic solutions
 
+In Main.java there are some problems from *leetcode.com*. I did not include test cases for these problems,
+because the website offers testing for the solutions to the problems listed there.
+I just used the main function to try some test cases for these problems instead.
