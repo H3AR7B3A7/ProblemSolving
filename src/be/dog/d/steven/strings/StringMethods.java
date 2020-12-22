@@ -23,7 +23,7 @@ public class StringMethods {
      * @return Number of unique characters in the string.
      */
     public static int numberOfLettersUsed(String str) {
-        HashSet<Character> chars = new HashSet<>();
+        Set<Character> chars = new HashSet<>();
         str = str.toLowerCase().replaceAll("[^a-z]","");
         for (int i = 0; i < str.length()-1; i++) {
             chars.add(str.charAt(i));
@@ -38,7 +38,7 @@ public class StringMethods {
      * @return Filtered string
      */
     public static String removeCharsContainedInSecondString(String toFilter, String filter) {
-        HashSet<Character> filterSet = new HashSet<>();
+        Set<Character> filterSet = new HashSet<>();
         for (int i = 0; i < filter.length(); i++) {
             filterSet.add(filter.charAt(i));
         }
