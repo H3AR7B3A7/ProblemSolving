@@ -17,6 +17,11 @@ class DynamicMethodsTest {
     }
 
     @Test
+    void number_of_ways_to_climb_staircase_step_size_two_improved_space_test(){
+        assertEquals(5, DynamicMethods.staircaseTwoImprovedSpaceComplexity(4));
+    }
+
+    @Test
     void number_of_ways_to_climb_staircase_step_size_three_test(){
         assertEquals(7, DynamicMethods.staircaseThree(4));
     }
