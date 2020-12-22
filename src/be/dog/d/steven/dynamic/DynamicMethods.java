@@ -1,5 +1,12 @@
 package be.dog.d.steven.dynamic;
 
+/**
+ * 1. Define the objective function
+ * 2. Identify base case
+ * 3. Write down transition function
+ * 4. Identify the order of execution
+ * 5. Identify the location of the answer
+ */
 public class DynamicMethods {
 
     /**
@@ -17,6 +24,37 @@ public class DynamicMethods {
     }
 
     /**
+     * GET THE NUMBER OF WAYS TO CLIMB A STAIRCASE CLIMBING 1 OR 2 STEPS AT A TIME
+     * @param numberOfStairs The amount of stairs in the staircase
+     * @return Number of ways to climb th stairs
+     */
+    public static int staircaseTwo(int numberOfStairs){
+        int[] dp = new int[numberOfStairs+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i <= numberOfStairs; i++) {
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[numberOfStairs];
+    }
+
+    /**
+     * GET THE NUMBER OF WAYS TO CLIMB A STAIRCASE CLIMBING 1, 2 or 3 STEPS AT A TIME
+     * @param numberOfStairs The amount of stairs in the staircase
+     * @return Number of ways to climb th stairs
+     */
+    public static int staircaseThree(int numberOfStairs){
+        int[] dp = new int[numberOfStairs+1];
+        dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = 2;
+        for (int i = 3; i <= numberOfStairs; i++) {
+            dp[i] = dp[i-1] + dp[i-2] +dp[i-3];
+        }
+        return dp[numberOfStairs];
+    }
+
+    /**
      * GET THE NUMBER OF WAYS TO CLIMB A STAIRCASE GIVEN A MAXIMUM NUMBER OF STAIRS IN ONE STEP
      * @param numberOfStairs The amount of stairs in the staircase
      * @param maxStepSize The maximum allowed number of stairs in one step
@@ -26,8 +64,7 @@ public class DynamicMethods {
         int[] dp = new int[numberOfStairs + 1];
         dp[0] = 1;
         dp[1] = 1;
-        for (int i = 2; i < numberOfStairs + 1; i++) {
-            dp[i] = 0;
+        for (int i = 2; i <= numberOfStairs; i++) {
             for (int j = 1; j <= maxStepSize && j <= i; j++) {
                 dp[i] += dp[i - j];
             }

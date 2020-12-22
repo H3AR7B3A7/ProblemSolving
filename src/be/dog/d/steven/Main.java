@@ -5,12 +5,20 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
+        /**
+         * StoneGameVII
+         */
         int[] array = new int[]{1, 100, 1};
-        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 1
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 1
         array = new int[]{7, 90, 5, 1, 100, 10, 10, 2};
-        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 122
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 122
         array = new int[]{5, 3, 1, 4, 2};
-        System.out.println(new StoneGameSolution().stoneGameVII(array)); // 6 ???
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 6 ???
+        /**
+         * This problem asks for dynamic programming, as our recursion function doesn't work
+         * for these more complex cases. If we were to account for these occurrences we'd end
+         * up with 'a lot' of code.
+         */
     }
 }
 
