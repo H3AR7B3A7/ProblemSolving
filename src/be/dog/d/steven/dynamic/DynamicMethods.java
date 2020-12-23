@@ -57,7 +57,7 @@ public class DynamicMethods {
     public static int staircaseTwoImprovedSpaceComplexity(int numberOfStairs){
         int a = 1;
         int b = 1;
-        int c = 0;
+        int c = 1;
         for (int i = 2; i <= numberOfStairs; i++) {
             c = b + a;
             a = b;
