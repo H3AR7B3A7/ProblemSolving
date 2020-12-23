@@ -19,6 +19,8 @@ public class Main {
          * for these more complex cases. If we were to account for these occurrences we'd end
          * up with 'a lot' of code.
          */
+        array = new int[]{5, 3, 1, 4, 2};
+        System.out.println(new StoneGameDynamicSolution().stoneGameVII(array)); // Expected: 6
     }
 }
 
@@ -66,5 +68,31 @@ class StoneGameSolution {
             }
         }
         return stoneGameVII(stones);
+    }
+}
+
+/**
+ * NOT MY CODE: Let's try to find out how this works by learning about 'Dynamic Programming'.
+ */
+class StoneGameDynamicSolution {
+
+    public int stoneGameVII(int[] stones) {
+
+        int n=stones.length;
+        int[] preSum=new int[n];
+        preSum[0]=stones[0];
+        for(int i=1;i<n;i++)
+            preSum[i]+=preSum[i-1]+stones[i];
+        int[][] dp=new int[n][n];
+        for(int len=1;len<n;len++){
+            for(int i=0;i+len<n;i++){
+                int j=i+len;
+                dp[i][j]=preSum[j-1]-(i==0?0:preSum[i-1])-dp[i][j-1];
+                if(dp[i][j]<preSum[j]-preSum[i]-dp[i+1][j])
+                    dp[i][j]=preSum[j]-preSum[i]-dp[i+1][j];
+            }
+        }
+        return dp[0][n-1];
+
     }
 }
