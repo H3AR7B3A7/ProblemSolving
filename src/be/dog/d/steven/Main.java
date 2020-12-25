@@ -9,7 +9,7 @@ public class Main {
          * StoneGameVII
          */
         int[] array = new int[]{1, 100, 1};
-        System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 1
+        System.out.println(new StoneGameDynamicSolution().stoneGameVII(array)); // Expected: 1
         array = new int[]{7, 90, 5, 1, 100, 10, 10, 2};
         System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 122
         array = new int[]{5, 3, 1, 4, 2};
@@ -78,21 +78,23 @@ class StoneGameDynamicSolution {
 
     public int stoneGameVII(int[] stones) {
 
-        int n=stones.length;
-        int[] preSum=new int[n];
-        preSum[0]=stones[0];
-        for(int i=1;i<n;i++)
-            preSum[i]+=preSum[i-1]+stones[i];
-        int[][] dp=new int[n][n];
-        for(int len=1;len<n;len++){
-            for(int i=0;i+len<n;i++){
-                int j=i+len;
-                dp[i][j]=preSum[j-1]-(i==0?0:preSum[i-1])-dp[i][j-1];
-                if(dp[i][j]<preSum[j]-preSum[i]-dp[i+1][j])
-                    dp[i][j]=preSum[j]-preSum[i]-dp[i+1][j];
+        int n = stones.length;
+        int[] preSum = new int[n];
+        preSum[0] = stones[0];
+        for (int i = 1; i < n; i++)
+            preSum[i] += preSum[i - 1] + stones[i];
+        System.out.println(Arrays.toString(preSum));
+        int[][] dp = new int[n][n];
+        for (int len = 1; len < n; len++) {
+            for (int i = 0; i + len < n; i++) {
+                int j = i + len;
+                dp[i][j] = preSum[j - 1] - (i == 0 ? 0 : preSum[i - 1]) - dp[i][j - 1];
+                if (dp[i][j] < preSum[j] - preSum[i] - dp[i + 1][j])
+                    dp[i][j] = preSum[j] - preSum[i] - dp[i + 1][j];
+                System.out.println(dp[i][j]);
             }
         }
-        return dp[0][n-1];
-
+        System.out.println(Arrays.deepToString(dp));
+        return dp[0][n - 1];
     }
 }
