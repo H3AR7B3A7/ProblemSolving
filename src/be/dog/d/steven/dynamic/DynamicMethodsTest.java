@@ -43,8 +43,20 @@ class DynamicMethodsTest {
     }
 
     @Test
-    void number_of_ways_to_climb_staircase_variable_step_size_improved_with_reds_2_test() {
+    void number_of_ways_to_climb_staircase_variable_step_size_improved_with_reds_improved_test() {
         int[] reds = {1, 3, 4};
         assertEquals(2, DynamicMethods.staircaseImprovedSkippingRedStairs2(7, 3, reds));
+    }
+
+    @Test
+    void paid_stair_case_test(){
+        int[] prices = {3,2,4};
+        assertEquals(6, DynamicMethods.paidStaircase(prices));
+    }
+
+    @Test
+    void paid_stair_case_improved_test(){
+        int[] prices = {3,2,4};
+        assertEquals(6, DynamicMethods.paidStaircaseImproved(prices));
     }
 }

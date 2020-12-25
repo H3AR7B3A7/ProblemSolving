@@ -1,6 +1,8 @@
 package be.dog.d.steven.dynamic;
 
 /**
+ * DYNAMIC PROGRAMMING - COMBINATORIAL & OPTIMIZATION PROBLEMS
+ *
  * 1. Define the objective function
  * 2. Identify base case
  * 3. Write down transition function
@@ -17,7 +19,7 @@ public class DynamicMethods {
      * 1. f(i) = sum of all the integers up to n
      * 2. f(0) = 0
      * 3. f(n) = f(n-1) + n
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int nSum(int n) {
@@ -37,7 +39,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2)
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int staircaseTwo(int numberOfStairs) {
@@ -51,10 +53,6 @@ public class DynamicMethods {
     }
 
     /**
-     * GET THE NUMBER OF WAYS TO CLIMB A STAIRCASE CLIMBING 1 OR 2 STEPS AT A TIME
-     *
-     * @param numberOfStairs The amount of stairs in the staircase
-     * @return Number of ways to climb the stairs
      * This method is equivalent to previous one but with a better (fixed) space complexity.
      */
     public static int staircaseTwoImprovedSpaceComplexity(int numberOfStairs) {
@@ -77,7 +75,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1, f(2) = 2
      * 3. f(n) = f(n-1) + f(n-2) + f(n-3)
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int staircaseThree(int numberOfStairs) {
@@ -100,7 +98,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int staircase(int numberOfStairs, int maxStepSize) {
@@ -115,16 +113,7 @@ public class DynamicMethods {
     }
 
     /**
-     * GET THE NUMBER OF WAYS TO CLIMB A STAIRCASE GIVEN A MAXIMUM NUMBER OF STAIRS IN ONE STEP
-     *
-     * @param numberOfStairs The amount of stairs in the staircase
-     * @param maxStepSize    The maximum allowed number of stairs in one step
-     * @return Number of ways to climb the stairs
-     * 1. f(i) = number of ways to climb the stairs
-     * 2. f(0) = 1, f(1) = 1
-     * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0
-     * 4. bottom-up
-     * 5. f(n)
+     * This method is equivalent to previous one but with a better (fixed) space complexity.
      */
     public static int staircaseImproved(int numberOfStairs, int maxStepSize) {
         int[] dp = new int[maxStepSize];
@@ -148,7 +137,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1 | isRed[0] = false
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0  &&  if(isRed[i-1] == true){ f(i) = 0 }
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int staircaseImprovedSkippingRedStairs(int numberOfStairs, int maxStepSize, boolean[] isRed) {
@@ -177,7 +166,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0  &&  if(reds.contains(i)){ f(i) = 0 }
-     * 4. bottom-up
+     * 4. Bottom-up
      * 5. f(n)
      */
     public static int staircaseImprovedSkippingRedStairs2(int numberOfStairs, int maxStepSize, int[] reds) {
@@ -198,4 +187,44 @@ public class DynamicMethods {
         }
         return dp[numberOfStairs % maxStepSize];
     }
+
+    /**
+
+     * FIND THE MINIMAL COST TO CLIMB STAIRS WITH EACH USED STAIR COSTING A DIFFERENT PRICE
+     * TRAVERSING A MAXIMUM OF 2 STEPS AT A TIME
+     * @param prices Price for each stair
+     * @return Minimal price to climb stairs
+     * 1. f(i) = Minimum cost to get to stair i
+     * 2. f(0) = 0
+     * 3. f(n) = Price[n-1] + min(f(n-1), f(n-2))
+     * 4. Bottom-up
+     * 5. f(n)
+     */
+    public static int paidStaircase(int[] prices){
+        int[] dp = new int[prices.length+1];
+        dp[0] = 0;
+        dp[1] = prices[0];
+        for (int i = 2; i <= prices.length; i++) {
+            dp[i] = Math.min(dp[i-1], dp[i-2]) + prices[i-1];
+        }
+        return dp[prices.length];
+    }
+
+    /**
+     * This method is equivalent to previous one but with a better (fixed) space complexity.
+     */
+    public static int paidStaircaseImproved(int[] prices){
+        int a = 0;
+        int b = prices[0];
+        int c = prices[0];
+        for (int i = 2; i <= prices.length; i++) {
+            c = Math.min(b, a) + prices[i-1];
+            a = b;
+            b = c;
+        }
+        return c;
+    }
+
+
+
 }
