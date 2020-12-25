@@ -2,6 +2,9 @@ package be.dog.d.steven.dynamic;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DynamicMethodsTest {
@@ -49,14 +52,21 @@ class DynamicMethodsTest {
     }
 
     @Test
-    void paid_stair_case_test(){
-        int[] prices = {3,2,4};
+    void paid_stair_case_test() {
+        int[] prices = {3, 2, 4};
         assertEquals(6, DynamicMethods.paidStaircase(prices));
     }
 
     @Test
-    void paid_stair_case_improved_test(){
-        int[] prices = {3,2,4};
+    void paid_stair_case_improved_test() {
+        int[] prices = {3, 2, 4};
         assertEquals(6, DynamicMethods.paidStaircaseImproved(prices));
+    }
+
+    @Test
+    void paid_stair_case_path_test() {
+        int[] prices = {3, 2, 4, 6, 1, 1, 5, 3};
+        List<Integer> expected = List.of(2, 3, 5, 6, 8);
+        assertEquals(expected, DynamicMethods.paidStaircasePath(prices));
     }
 }

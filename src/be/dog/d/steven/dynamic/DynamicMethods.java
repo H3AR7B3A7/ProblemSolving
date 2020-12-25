@@ -1,8 +1,12 @@
 package be.dog.d.steven.dynamic;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * DYNAMIC PROGRAMMING - COMBINATORIAL & OPTIMIZATION PROBLEMS
- *
+ * <p>
  * 1. Define the objective function
  * 2. Identify base case
  * 3. Write down transition function
@@ -132,7 +136,7 @@ public class DynamicMethods {
      *
      * @param numberOfStairs The amount of stairs in the staircase
      * @param maxStepSize    The maximum allowed number of stairs in one step
-     * @param isRed Boolean array with size numberOfStairs + 1, representing red stairs to be 'true'
+     * @param isRed          Boolean array with size numberOfStairs + 1, representing red stairs to be 'true'
      * @return Number of ways to climb the stairs
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1 | isRed[0] = false
@@ -161,7 +165,7 @@ public class DynamicMethods {
      *
      * @param numberOfStairs The amount of stairs in the staircase
      * @param maxStepSize    The maximum allowed number of stairs in one step
-     * @param reds Array holding positions of red stairs
+     * @param reds           Array holding positions of red stairs
      * @return Number of ways to climb the stairs
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1
@@ -170,7 +174,7 @@ public class DynamicMethods {
      * 5. f(n)
      */
     public static int staircaseImprovedSkippingRedStairs2(int numberOfStairs, int maxStepSize, int[] reds) {
-        boolean[] isRed = new boolean[numberOfStairs+1];
+        boolean[] isRed = new boolean[numberOfStairs + 1];
         for (int red : reds) {
             isRed[red] = true;
         }
@@ -189,9 +193,9 @@ public class DynamicMethods {
     }
 
     /**
-
      * FIND THE MINIMAL COST TO CLIMB STAIRS WITH EACH USED STAIR COSTING A DIFFERENT PRICE
      * TRAVERSING A MAXIMUM OF 2 STEPS AT A TIME
+     *
      * @param prices Price for each stair
      * @return Minimal price to climb stairs
      * 1. f(i) = Minimum cost to get to stair i
@@ -200,12 +204,12 @@ public class DynamicMethods {
      * 4. Bottom-up
      * 5. f(n)
      */
-    public static int paidStaircase(int[] prices){
-        int[] dp = new int[prices.length+1];
+    public static int paidStaircase(int[] prices) {
+        int[] dp = new int[prices.length + 1];
         dp[0] = 0;
         dp[1] = prices[0];
         for (int i = 2; i <= prices.length; i++) {
-            dp[i] = Math.min(dp[i-1], dp[i-2]) + prices[i-1];
+            dp[i] = Math.min(dp[i - 1], dp[i - 2]) + prices[i - 1];
         }
         return dp[prices.length];
     }
@@ -213,18 +217,44 @@ public class DynamicMethods {
     /**
      * This method is equivalent to previous one but with a better (fixed) space complexity.
      */
-    public static int paidStaircaseImproved(int[] prices){
+    public static int paidStaircaseImproved(int[] prices) {
         int a = 0;
         int b = prices[0];
         int c = prices[0];
         for (int i = 2; i <= prices.length; i++) {
-            c = Math.min(b, a) + prices[i-1];
+            c = Math.min(b, a) + prices[i - 1];
             a = b;
             b = c;
         }
         return c;
     }
 
-
+    /**
+     * GET THE PATH WITH MINIMAL COST TO CLIMB STAIRS WITH EACH USED STAIR COSTING A DIFFERENT PRICE
+     * TRAVERSING A MAXIMUM OF 2 STEPS AT A TIME
+     *
+     * @param prices Price for each stair
+     * @return Path to climb stairs with minimal cost
+     */
+    public static List<Integer> paidStaircasePath(int[] prices) {
+        int[] dp = new int[prices.length + 1];
+        int[] origins = new int[prices.length + 1];
+        dp[0] = 0;
+        dp[1] = prices[0];
+        for (int i = 2; i <= prices.length; i++) {
+            dp[i] = Math.min(dp[i - 1], dp[i - 2]) + prices[i - 1];
+            if (dp[i - 1] < dp[i - 2]) {
+                origins[i] = i - 1;
+            } else {
+                origins[i] = i - 2;
+            }
+        }
+        List<Integer> path = new ArrayList<>();
+        for (int i = prices.length; i > 0; i = origins[i]) {
+            path.add(i);
+        }
+        Collections.reverse(path);
+        return path;
+    }
 
 }
