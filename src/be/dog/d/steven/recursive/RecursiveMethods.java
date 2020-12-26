@@ -28,7 +28,7 @@ public class RecursiveMethods {
     }
 
     /**
-     * RETURN THE NUMBER OF UNIQUE PATHS IN A BxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
+     * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
      * ONLY MOVING DOWN OR RIGHT
      * @param width Number of columns
      * @param height Number of rows
