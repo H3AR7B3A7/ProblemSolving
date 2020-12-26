@@ -257,4 +257,30 @@ public class DynamicMethods {
         return path;
     }
 
+    /**
+     * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
+     * ONLY MOVING DOWN OR RIGHT
+     * @param width Number of columns
+     * @param height Number of rows
+     * @return Number of unique paths
+     * 1. f(w,h) = Number of unique paths to (w,h)
+     * 2. f(1,1) = 1
+     * 3. f(w,h) = f(w-1,h) + f(w,h-1)
+     * 4. Bottom-up
+     * 5. f(w,h)
+     */
+
+    /**
+     * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
+     * ONLY MOVING DOWN OR RIGHT, WITHOUT USING PAIRS IN ARRAY REDS
+     * @param width Number of columns
+     * @param height Number of rows
+     * @return Number of unique paths
+     * 1. f(i,j) = Number of unique paths to (i,j)
+     * 2. f(1,1) = 1
+     * 3. f(w,h) = f(w-1,h) + f(w,h-1) | if(reds.contains(i,j)){ f(i,j) = 0 }
+     * 4. Bottom-up
+     * 5. f(w,h)
+     */
+
 }
