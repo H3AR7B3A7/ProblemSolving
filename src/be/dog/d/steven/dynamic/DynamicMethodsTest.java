@@ -1,5 +1,6 @@
 package be.dog.d.steven.dynamic;
 
+import be.dog.d.steven.recursive.RecursiveMethods;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -69,4 +70,12 @@ class DynamicMethodsTest {
         List<Integer> expected = List.of(2, 3, 5, 6, 8);
         assertEquals(expected, DynamicMethods.paidStaircasePath(prices));
     }
+
+    @Test
+    void all_possible_paths_from_top_left_to_bottom_right_test(){
+        int numberOfUniquePaths = DynamicMethods.uniquePaths(3,4);
+        assertEquals(10,numberOfUniquePaths);
+    }
+
+
 }

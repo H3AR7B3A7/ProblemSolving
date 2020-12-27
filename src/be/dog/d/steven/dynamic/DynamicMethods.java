@@ -260,8 +260,9 @@ public class DynamicMethods {
     /**
      * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
      * ONLY MOVING DOWN OR RIGHT
-     * @param width Number of columns
-     * @param height Number of rows
+     *
+     * @param w Number of columns
+     * @param h Number of rows
      * @return Number of unique paths
      * 1. f(w,h) = Number of unique paths to (w,h)
      * 2. f(1,1) = 1
@@ -269,6 +270,22 @@ public class DynamicMethods {
      * 4. Bottom-up
      * 5. f(w,h)
      */
+    public static int uniquePaths(int w, int h) {
+        int[][] dp = new int[w][h];
+        dp[0][0] = 1;
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if (i > 0 && j > 0) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                } else if (i > 0) {
+                    dp[i][j] = dp[i - 1][j];
+                } else if (j > 0) {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+        }
+        return dp[w - 1][h - 1];
+    }
 
     /**
      * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
