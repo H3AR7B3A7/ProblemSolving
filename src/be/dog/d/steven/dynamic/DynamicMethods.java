@@ -1,6 +1,7 @@
 package be.dog.d.steven.dynamic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -264,7 +265,7 @@ public class DynamicMethods {
      * @param w Number of columns
      * @param h Number of rows
      * @return Number of unique paths
-     * 1. f(w,h) = Number of unique paths to (w,h)
+     * 1. f(i,j) = Number of unique paths to (i,j)
      * 2. f(1,1) = 1
      * 3. f(w,h) = f(w-1,h) + f(w,h-1)
      * 4. Bottom-up
@@ -284,14 +285,15 @@ public class DynamicMethods {
                 }
             }
         }
+        System.out.println(Arrays.deepToString(dp));
         return dp[w - 1][h - 1];
     }
 
     /**
      * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
      * ONLY MOVING DOWN OR RIGHT, WITHOUT USING PAIRS IN ARRAY REDS
-     * @param width Number of columns
-     * @param height Number of rows
+     *
+     * @param isRed Array with 1 for obstacle and 0 for absence of obstacle
      * @return Number of unique paths
      * 1. f(i,j) = Number of unique paths to (i,j)
      * 2. f(1,1) = 1
@@ -299,5 +301,28 @@ public class DynamicMethods {
      * 4. Bottom-up
      * 5. f(w,h)
      */
+    public static int uniquePathsWithObstacles(int[][] isRed) {
+        int w = isRed.length;
+        int h = isRed[0].length;
 
+        int[][] dp = new int[w][h];
+        dp[0][0] = 1;
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if(isRed[i][j] == 1){
+                    dp[i][j] = 0;
+                    continue;
+                }
+                if (i > 0 && j > 0) {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                } else if (i > 0) {
+                    dp[i][j] = dp[i - 1][j];
+                } else if (j > 0) {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+        }
+        System.out.println(Arrays.deepToString(dp));
+        return dp[w - 1][h - 1];
+    }
 }

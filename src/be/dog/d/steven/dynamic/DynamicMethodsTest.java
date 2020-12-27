@@ -72,9 +72,14 @@ class DynamicMethodsTest {
     }
 
     @Test
-    void all_possible_paths_from_top_left_to_bottom_right_test(){
-        int numberOfUniquePaths = DynamicMethods.uniquePaths(3,4);
-        assertEquals(10,numberOfUniquePaths);
+    void all_possible_paths_from_top_left_to_bottom_right_test() {
+        assertEquals(10, DynamicMethods.uniquePaths(3, 4));
+    }
+
+    @Test
+    void all_possible_paths_given_array_of_obstacles_test() {
+        int[][] isRed = {{0, 0, 0, 0},{0, 1, 1, 1},{0, 0, 0, 0}};
+        assertEquals(1,DynamicMethods.uniquePathsWithObstacles(isRed));
     }
 
 
