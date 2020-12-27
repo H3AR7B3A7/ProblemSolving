@@ -266,7 +266,7 @@ public class DynamicMethods {
      * @param h Number of rows
      * @return Number of unique paths
      * 1. f(i,j) = Number of unique paths to (i,j)
-     * 2. f(1,1) = 1
+     * 2. f(0,0) = 1
      * 3. f(w,h) = f(w-1,h) + f(w,h-1)
      * 4. Bottom-up
      * 5. f(w,h)
@@ -291,13 +291,13 @@ public class DynamicMethods {
 
     /**
      * RETURN THE NUMBER OF UNIQUE PATHS IN A WxH ARRAY FROM TOP LEFT TO BOTTOM RIGHT
-     * ONLY MOVING DOWN OR RIGHT, WITHOUT USING PAIRS IN ARRAY REDS
+     * ONLY MOVING DOWN OR RIGHT, WITHOUT TRAVERSING OBSTACLES IN A GIVEN ARRAY
      *
      * @param isRed Array with 1 for obstacle and 0 for absence of obstacle
      * @return Number of unique paths
      * 1. f(i,j) = Number of unique paths to (i,j)
-     * 2. f(1,1) = 1
-     * 3. f(w,h) = f(w-1,h) + f(w,h-1) | if(reds.contains(i,j)){ f(i,j) = 0 }
+     * 2. f(0,0) = 1
+     * 3. f(w,h) = f(w-1,h) + f(w,h-1) | if(isRed == 1){ f(i,j) = 0 }
      * 4. Bottom-up
      * 5. f(w,h)
      */
@@ -324,5 +324,36 @@ public class DynamicMethods {
         }
         System.out.println(Arrays.deepToString(dp));
         return dp[w - 1][h - 1];
+    }
+
+    /**
+     * RETURN THE MAXIMUM VALUE WE CAN GET FOLLOWING A PATHS IN A WxH ARRAY FROM TOP LEFT TO
+     * BOTTOM RIGHT ONLY MOVING DOWN OR RIGHT, GIVEN AN ARRAY OF VALUES
+     *
+     * @param values Array with values
+     * @return Maximum accumulated values on a path
+     * 1. f(i,j) = Maximum collected value on (i,j)
+     * 2. f(0,0) = 0
+     * 3. f(w,h) = max((w-1,h),(w,h-1)) + valueAt(w,h)
+     * 4. Bottom-up
+     * 5. f(w,h)
+     */
+    public static int maximumValuePath(int[][] values) {
+        int w = values.length;
+        int h = values[0].length;
+        int[][] dp = new int[w][h];
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if(i>0 && j> 0){
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]) + values[i][j];
+                } else if(i>0){
+                    dp[i][j]= dp[i-1][j] + values[i][j];
+                } else if(j>0){
+                    dp[i][j]= dp[i][j-1] + values[i][j];
+                }
+            }
+        }
+        System.out.println(Arrays.deepToString(dp));
+        return dp[w-1][h-1];
     }
 }

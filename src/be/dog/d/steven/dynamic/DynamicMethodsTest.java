@@ -82,5 +82,11 @@ class DynamicMethodsTest {
         assertEquals(1,DynamicMethods.uniquePathsWithObstacles(isRed));
     }
 
-
+    @Test
+    void maximum_value_path_for_given_values_test(){
+        int[][] values = {{0,2,2,1},{3,1,1,1},{4,4,2,0}};
+        int[][] values2 = {{0,1,1,1,10},{2,1,1,1,1,},{2,1,1,2,0}};
+        assertEquals(13,DynamicMethods.maximumValuePath(values));
+        assertEquals(14, DynamicMethods.maximumValuePath(values2));
+    }
 }
