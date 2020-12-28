@@ -334,7 +334,7 @@ public class DynamicMethods {
      * @return Maximum accumulated values on a path
      * 1. f(i,j) = Maximum collected value on (i,j)
      * 2. f(0,0) = 0
-     * 3. f(w,h) = max((w-1,h),(w,h-1)) + valueAt(w,h)
+     * 3. f(w,h) = max(f(w-1,h),f(w,h-1)) + valueAt(w,h)
      * 4. Bottom-up
      * 5. f(w,h)
      */
@@ -355,5 +355,62 @@ public class DynamicMethods {
         }
         System.out.println(Arrays.deepToString(dp));
         return dp[w-1][h-1];
+    }
+
+    /**
+     * RETURN THE PATH WITH MAXIMUM VALUE WE CAN GET FOLLOWING A PATHS IN A WxH ARRAY FROM
+     * TOP LEFT TO BOTTOM RIGHT ONLY MOVING DOWN OR RIGHT, GIVEN AN ARRAY OF VALUES
+     *
+     * @param values Array with values
+     * @return Maximum accumulated values on a path
+     * 1. f(i,j) = Maximum collected value on (i,j)
+     * 2. f(0,0) = 0
+     * 3. f(w,h) = max(f(w-1,h),f(w,h-1)) + valueAt(w,h)
+     * 4. Bottom-up
+     * 5. f(w,h)
+     */
+    public static List<Integer[]> pathOfMaximumValuePath(int[][] values) {
+        int w = values.length;
+        int h = values[0].length;
+        int[][] dp = new int[w][h];
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                if(i>0 && j> 0){
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]) + values[i][j];
+                } else if(i>0){
+                    dp[i][j]= dp[i-1][j] + values[i][j];
+                } else if(j>0){
+                    dp[i][j]= dp[i][j-1] + values[i][j];
+                }
+            }
+        }
+        System.out.println(Arrays.deepToString(dp));
+        return getPath(dp,w-1,h-1);
+    }
+
+    /**
+     * HELPER FUNCTION
+     * @param dp Memoization of main function
+     * @param i Current width
+     * @param j Current Height
+     * @return Path as list of [i,j] coords
+     */
+    private static List<Integer[]> getPath(int[][] dp, Integer i, Integer j) {
+        List<Integer[]> path = new ArrayList<>();
+        if(i == 0 && j == 0){
+        // return path here to drop [0,0] from list
+        } else if(i==0){
+            path = getPath(dp,i,j-1);
+        } else if(j==0){
+            path = getPath(dp,i-1,j);
+        } else {
+            if (dp[i-1][j] > dp[i][j-1]){
+                path = getPath(dp, i-1,j);
+            }else{
+                path = getPath(dp, i,j-1);
+            }
+        }
+        path.add(new Integer[]{i,j});
+        return path;
     }
 }
