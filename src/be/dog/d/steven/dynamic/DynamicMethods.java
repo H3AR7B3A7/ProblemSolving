@@ -391,7 +391,7 @@ public class DynamicMethods {
     /**
      * HELPER FUNCTION
      *
-     * @param dp Memoization of main function
+     * @param dp Results of main function
      * @param i  Current width
      * @param j  Current Height
      * @return Path as list of [i,j] coords
@@ -416,7 +416,8 @@ public class DynamicMethods {
     }
 
     /**
-     * PAINT FENCE WITH TWO COLORS, NOT REPEATING COLOR ON MORE THEN 2 POSTS
+     * DIFFERENT WAYS TO PAINT FENCE WITH TWO COLORS, NOT REPEATING COLOR ON MORE THEN 2
+     * FENCE POSTS
      *
      * @param n Number of posts
      * @return Number of ways to paint the fence
@@ -439,4 +440,6 @@ public class DynamicMethods {
         }
         return dp[n][0] + dp[n][1];
     }
+
+
 }
