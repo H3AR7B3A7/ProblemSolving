@@ -441,5 +441,50 @@ public class DynamicMethods {
         return dp[n][0] + dp[n][1];
     }
 
+    /**
+     * GET THE VALUE IN THE FIBONACCI SEQUENCE AT A GIVEN POSITION
+     *
+     * @param position The position of the value we want to get
+     * @return The value at the given position
+     * 1. f(i) = Value in Fibonacci sequence at position i
+     * 2. f(0) = 0, f(1) = 1
+     * 3. f(n) = f(n-1) + f(n-2)
+     * 4. Bottom-up
+     * 5. f(n)
+     */
+    public static int getValueAtFibonacciPositionBottomUp(int position) {
+        int[] dp = new int[(int) Math.pow(position, 2) + 2];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i <= position; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2];
+        }
+        return dp[position];
+    }
 
+    /**
+     * GET THE VALUE IN THE FIBONACCI SEQUENCE AT A GIVEN POSITION
+     *
+     * @param position The position of the value we want to get
+     * @return The value at the given position
+     * 1. f(i) = Value in Fibonacci sequence at position i
+     * 2. f(0) = 0, f(1) = 1
+     * 3. f(n) = f(n-1) + f(n-2)
+     * 4. Top-down
+     * 5. f(n)
+     */
+    public static int getValueAtFibonacciPositionTopDown(int position) {
+        int[] dp = new int[position + 1];
+        if (dp[position] == 0) {
+            if (position == 0) {
+                dp[position] = 0;
+            } else if (position == 1) {
+                dp[position] = 1;
+            } else {
+                dp[position] = getValueAtFibonacciPositionTopDown(position - 1) +
+                        getValueAtFibonacciPositionTopDown(position - 2);
+            }
+        }
+        return dp[position];
+    }
 }

@@ -112,5 +112,25 @@ class DynamicMethodsTest {
         assertEquals(6, DynamicMethods.waysToPaintFence(3));
     }
 
+    @Test
+    void value_of_fibonacci_sequence_at_given_position_bottom_up_test() {
+        assertEquals(55, DynamicMethods.getValueAtFibonacciPositionBottomUp(10));
+        assertEquals(0, DynamicMethods.getValueAtFibonacciPositionBottomUp(0));
+        assertEquals(1, DynamicMethods.getValueAtFibonacciPositionBottomUp(1));
+        assertEquals(1, DynamicMethods.getValueAtFibonacciPositionBottomUp(2));
+        assertEquals(2, DynamicMethods.getValueAtFibonacciPositionBottomUp(3));
+        assertEquals(3, DynamicMethods.getValueAtFibonacciPositionBottomUp(4));
+        assertEquals(5, DynamicMethods.getValueAtFibonacciPositionBottomUp(5));
+    }
 
+    @Test
+    void value_of_fibonacci_sequence_at_given_position_top_down_test() {
+        assertEquals(55, DynamicMethods.getValueAtFibonacciPositionTopDown(10));
+        assertEquals(0, DynamicMethods.getValueAtFibonacciPositionTopDown(0));
+        assertEquals(1, DynamicMethods.getValueAtFibonacciPositionTopDown(1));
+        assertEquals(1, DynamicMethods.getValueAtFibonacciPositionTopDown(2));
+        assertEquals(2, DynamicMethods.getValueAtFibonacciPositionTopDown(3));
+        assertEquals(3, DynamicMethods.getValueAtFibonacciPositionTopDown(4));
+        assertEquals(5, DynamicMethods.getValueAtFibonacciPositionTopDown(5));
+    }
 }
