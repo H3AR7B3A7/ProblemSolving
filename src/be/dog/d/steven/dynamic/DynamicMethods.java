@@ -309,7 +309,7 @@ public class DynamicMethods {
         dp[0][0] = 1;
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                if(isRed[i][j] == 1){
+                if (isRed[i][j] == 1) {
                     dp[i][j] = 0;
                     continue;
                 }
@@ -344,17 +344,17 @@ public class DynamicMethods {
         int[][] dp = new int[w][h];
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                if(i>0 && j> 0){
-                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]) + values[i][j];
-                } else if(i>0){
-                    dp[i][j]= dp[i-1][j] + values[i][j];
-                } else if(j>0){
-                    dp[i][j]= dp[i][j-1] + values[i][j];
+                if (i > 0 && j > 0) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + values[i][j];
+                } else if (i > 0) {
+                    dp[i][j] = dp[i - 1][j] + values[i][j];
+                } else if (j > 0) {
+                    dp[i][j] = dp[i][j - 1] + values[i][j];
                 }
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return dp[w-1][h-1];
+        return dp[w - 1][h - 1];
     }
 
     /**
@@ -375,42 +375,68 @@ public class DynamicMethods {
         int[][] dp = new int[w][h];
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                if(i>0 && j> 0){
-                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]) + values[i][j];
-                } else if(i>0){
-                    dp[i][j]= dp[i-1][j] + values[i][j];
-                } else if(j>0){
-                    dp[i][j]= dp[i][j-1] + values[i][j];
+                if (i > 0 && j > 0) {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]) + values[i][j];
+                } else if (i > 0) {
+                    dp[i][j] = dp[i - 1][j] + values[i][j];
+                } else if (j > 0) {
+                    dp[i][j] = dp[i][j - 1] + values[i][j];
                 }
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return getPath(dp,w-1,h-1);
+        return getPath(dp, w - 1, h - 1);
     }
 
     /**
      * HELPER FUNCTION
+     *
      * @param dp Memoization of main function
-     * @param i Current width
-     * @param j Current Height
+     * @param i  Current width
+     * @param j  Current Height
      * @return Path as list of [i,j] coords
      */
     private static List<Integer[]> getPath(int[][] dp, Integer i, Integer j) {
         List<Integer[]> path = new ArrayList<>();
-        if(i == 0 && j == 0){
-        // return path here to drop [0,0] from list
-        } else if(i==0){
-            path = getPath(dp,i,j-1);
-        } else if(j==0){
-            path = getPath(dp,i-1,j);
+        if (i == 0 && j == 0) { // Negate this check !() and make the others children to avoid empty body.
+            // Return path here to drop [0,0] from list
+        } else if (i == 0) {
+            path = getPath(dp, i, j - 1);
+        } else if (j == 0) {
+            path = getPath(dp, i - 1, j);
         } else {
-            if (dp[i-1][j] > dp[i][j-1]){
-                path = getPath(dp, i-1,j);
-            }else{
-                path = getPath(dp, i,j-1);
+            if (dp[i - 1][j] > dp[i][j - 1]) {
+                path = getPath(dp, i - 1, j);
+            } else {
+                path = getPath(dp, i, j - 1);
             }
         }
-        path.add(new Integer[]{i,j});
+        path.add(new Integer[]{i, j});
         return path;
+    }
+
+    /**
+     * PAINT FENCE WITH TWO COLORS, NOT REPEATING COLOR ON MORE THEN 2 POSTS
+     *
+     * @param n Number of posts
+     * @return Number of ways to paint the fence
+     * 1. f(i,j) = Total number of ways to paint i posts painted in j (blue/green)
+     * 2. f(1,0) = 1, f(1,1) = 1, f(2,0) = 2, f(2,1) = 2
+     * 3. f(n,j) = f(n-1, 1-j) + f(n-2, 1-j)
+     * 4. Bottom-up
+     * 5. f(n,0) + f(n,1)
+     */
+    public static int waysToPaintFence(int n) {
+        int[][] dp = new int[n + 1][2];
+        dp[1][0] = 1; // 0 = blue
+        dp[1][1] = 1; // 1 = green
+        dp[2][0] = 2; // 10, 00
+        dp[2][1] = 2; // 11, 01
+        for (int i = 3; i <= n; i++) {
+            for (int j = 0; j <= 1; j++) {
+                dp[i][j] = dp[i - 1][1 - j] + dp[i - 2][1 - j];
+            }
+        }
+        return dp[n][0] + dp[n][1];
     }
 }

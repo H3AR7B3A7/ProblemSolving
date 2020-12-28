@@ -110,4 +110,11 @@ class DynamicMethodsTest {
         assertEquals(Arrays.deepToString(expectedPath), Arrays.deepToString(array));
         assertEquals(Arrays.deepToString(expectedPath2), Arrays.deepToString(array2));
     }
+
+    @Test
+    void ways_to_paint_fence_in_two_colors_test(){
+        assertEquals(6, DynamicMethods.waysToPaintFence(3));
+    }
+
+
 }
