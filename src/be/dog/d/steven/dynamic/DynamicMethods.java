@@ -560,6 +560,7 @@ public class DynamicMethods {
     public static int minimalNumberOfCoinsToMakeChange(int change) {
         int[] denominations = {1, 2, 5, 10, 20, 50, 100, 200};
         int[] dp = new int[change + 1];
+        int[] origins = new int[change+1];
         dp[0] = 0;
         for (int i = 1; i <= change; i++) {
             dp[i] = Integer.MAX_VALUE;
@@ -568,6 +569,7 @@ public class DynamicMethods {
                     continue;
                 }
                 dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                origins[i] = coin;
 
             }
 //            if (i >= 1){
@@ -584,7 +586,25 @@ public class DynamicMethods {
         if (dp[change] == Integer.MAX_VALUE) {
             return -1;
         }
+        System.out.println(Arrays.toString(dp));
+        System.out.println(Arrays.toString(origins));
+
+        printPath(origins);
+
         return dp[change];
+    }
+
+    /**
+     * HELPER FUNCTION - GET PATH
+     * @param origins Array with origins from main function
+     */
+    private static void printPath(int[] origins) {
+        int last = origins[origins.length-1];
+        System.out.println(last);
+        origins = Arrays.copyOfRange(origins,0,origins.length-last);
+        if (origins.length-1 > 0){
+            printPath(origins);
+        }
     }
 
     /**

@@ -151,7 +151,7 @@ class DynamicMethodsTest {
 
     @Test
     void minimum_amount_of_coins_to_give_change_test() {
-        assertEquals(2, DynamicMethods.minimalNumberOfCoinsToMakeChange(202));
+        assertEquals(3, DynamicMethods.minimalNumberOfCoinsToMakeChange(225));
     }
 
 }
