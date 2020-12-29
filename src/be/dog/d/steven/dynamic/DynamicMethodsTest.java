@@ -133,4 +133,14 @@ class DynamicMethodsTest {
         assertEquals(3, DynamicMethods.getValueAtFibonacciPositionTopDown(4));
         assertEquals(5, DynamicMethods.getValueAtFibonacciPositionTopDown(5));
     }
+
+    @Test
+    void ways_to_return_change_test(){
+        assertEquals(5, DynamicMethods.numberOfWaysToGiveChange(4));
+    }
+
+    @Test
+    void unique_ways_to_return_change_test(){
+        assertEquals(3, DynamicMethods.numberOfUniqueWaysToGiveChange(4));
+    }
 }

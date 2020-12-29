@@ -24,7 +24,7 @@ public class DynamicMethods {
      * 1. f(i) = sum of all the integers up to n
      * 2. f(0) = 0
      * 3. f(n) = f(n-1) + n
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int nSum(int n) {
@@ -44,7 +44,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int staircaseTwo(int numberOfStairs) {
@@ -58,7 +58,7 @@ public class DynamicMethods {
     }
 
     /**
-     * This method is equivalent to previous one but with a better (fixed) space complexity.
+     * This method is equivalent to previous one but with a better (constant) space complexity.
      */
     public static int staircaseTwoImprovedSpaceComplexity(int numberOfStairs) {
         int a = 1;
@@ -80,7 +80,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1, f(2) = 2
      * 3. f(n) = f(n-1) + f(n-2) + f(n-3)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int staircaseThree(int numberOfStairs) {
@@ -103,7 +103,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int staircase(int numberOfStairs, int maxStepSize) {
@@ -142,7 +142,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1 | isRed[0] = false
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0  &&  if(isRed[i-1] == true){ f(i) = 0 }
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int staircaseImprovedSkippingRedStairs(int numberOfStairs, int maxStepSize, boolean[] isRed) {
@@ -171,7 +171,7 @@ public class DynamicMethods {
      * 1. f(i) = number of ways to climb the stairs
      * 2. f(0) = 1, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2) + ... + f(n-maxStepSize) | n-maxStepSize >= 0  &&  if(reds.contains(i)){ f(i) = 0 }
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int staircaseImprovedSkippingRedStairs2(int numberOfStairs, int maxStepSize, int[] reds) {
@@ -202,7 +202,7 @@ public class DynamicMethods {
      * 1. f(i) = Minimum cost to get to stair i
      * 2. f(0) = 0
      * 3. f(n) = Price[n-1] + min(f(n-1), f(n-2))
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int paidStaircase(int[] prices) {
@@ -268,7 +268,7 @@ public class DynamicMethods {
      * 1. f(i,j) = Number of unique paths to (i,j)
      * 2. f(0,0) = 1
      * 3. f(w,h) = f(w-1,h) + f(w,h-1)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(w,h)
      */
     public static int uniquePaths(int w, int h) {
@@ -298,7 +298,7 @@ public class DynamicMethods {
      * 1. f(i,j) = Number of unique paths to (i,j)
      * 2. f(0,0) = 1
      * 3. f(w,h) = f(w-1,h) + f(w,h-1) | if(isRed == 1){ f(i,j) = 0 }
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(w,h)
      */
     public static int uniquePathsWithObstacles(int[][] isRed) {
@@ -335,7 +335,7 @@ public class DynamicMethods {
      * 1. f(i,j) = Maximum collected value on (i,j)
      * 2. f(0,0) = 0
      * 3. f(w,h) = max(f(w-1,h),f(w,h-1)) + valueAt(w,h)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(w,h)
      */
     public static int maximumValuePath(int[][] values) {
@@ -366,7 +366,7 @@ public class DynamicMethods {
      * 1. f(i,j) = Maximum collected value on (i,j)
      * 2. f(0,0) = 0
      * 3. f(w,h) = max(f(w-1,h),f(w,h-1)) + valueAt(w,h)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(w,h)
      */
     public static List<Integer[]> pathOfMaximumValuePath(int[][] values) {
@@ -424,7 +424,7 @@ public class DynamicMethods {
      * 1. f(i,j) = Total number of ways to paint i posts painted in j (blue/green)
      * 2. f(1,0) = 1, f(1,1) = 1, f(2,0) = 2, f(2,1) = 2
      * 3. f(n,j) = f(n-1, 1-j) + f(n-2, 1-j)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n,0) + f(n,1)
      */
     public static int waysToPaintFence(int n) {
@@ -449,7 +449,7 @@ public class DynamicMethods {
      * 1. f(i) = Value in Fibonacci sequence at position i
      * 2. f(0) = 0, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2)
-     * 4. Bottom-up
+     * 4. Bottom-up: tabulation
      * 5. f(n)
      */
     public static int getValueAtFibonacciPositionBottomUp(int position) {
@@ -470,21 +470,79 @@ public class DynamicMethods {
      * 1. f(i) = Value in Fibonacci sequence at position i
      * 2. f(0) = 0, f(1) = 1
      * 3. f(n) = f(n-1) + f(n-2)
-     * 4. Top-down
+     * 4. Top-down: recursion + memoization
      * 5. f(n)
      */
     public static int getValueAtFibonacciPositionTopDown(int position) {
-        int[] dp = new int[position + 1];
-        if (dp[position] == 0) {
+        int[] memo = new int[position + 1];
+        if (memo[position] == 0) {
             if (position == 0) {
-                dp[position] = 0;
+                memo[position] = 0;
             } else if (position == 1) {
-                dp[position] = 1;
+                memo[position] = 1;
             } else {
-                dp[position] = getValueAtFibonacciPositionTopDown(position - 1) +
+                memo[position] = getValueAtFibonacciPositionTopDown(position - 1) +
                         getValueAtFibonacciPositionTopDown(position - 2);
             }
         }
-        return dp[position];
+        return memo[position];
+    }
+
+    /**
+     * GIVEN AN UNLIMITED SUPPLY OF COINS, WHAT IS THE TOTAL NUMBER OF WAYS WE CAN GIVE CHANGE
+     * WITH CHANGE VALUES: 1, 2, 5, 10, 20, 50, 100, 200
+     *
+     * @param change The amount of change we need to give
+     * @return Number of ways to give change
+     * 1. f(i) = Number of ways to give change for i change
+     * 2. f(0) = 1, f(1) = 1, f(2) = 2
+     * 3. f(n) = f(n-1) + f(n-2) + f(n-5) + f(n-10) + f(n-20) + f(n-50) + f(n-100) +f(n-200) | f(x) > 0
+     * 4. Bottom-up: tabulation (for better approach -> generating functions)
+     * 5. f(n)
+     */
+    public static int numberOfWaysToGiveChange(int change) {
+        int[] dp = new int[change + 1];
+        int[] denominations = {1, 2, 5, 10, 20, 50, 100, 200};
+        dp[0] = 1;
+        for (int i = 1; i <= change; i++) {
+            for (int coin : denominations) {
+                if (i >= coin) {
+                    dp[i] += dp[i - coin];
+                }
+            }
+        }
+        return dp[change];
+    }
+
+    /**
+     * GIVEN AN UNLIMITED SUPPLY OF COINS, WHAT IS THE TOTAL NUMBER OF WAYS WE CAN GIVE CHANGE
+     * WITHOUT USING THE SAME COINS IN A DIFFERENT ORDER
+     * WITH CHANGE VALUES: 1, 2, 5, 10, 20, 50, 100, 200
+     *
+     * @param change The amount of change we need to give
+     * @return Number of unique ways to give change
+     * 1. f(i,j) = Number of ways to give change for j change, with coins <= i
+     * 2. f(0,0) = 1, f(0,j) = 0, f(i,0) = 1, f(1,j) = 1
+     * 3. f(m,n) = f(m,n-m) + f(m-1,n-(m-1)) + ... + f(1,n-1)
+     * 4. Bottom-up: tabulation (for better approach -> generating functions)
+     * 5. f(m,n)
+     */
+    public static int numberOfUniqueWaysToGiveChange(int change) {
+        int[] denominations = {1, 2, 5, 10, 20, 50, 100, 200};
+        int[][] dp = new int[denominations.length + 1][change + 1];
+        for (int i = 0; i < denominations.length + 1; i++) {
+            dp[i][0] = 1;
+        }
+        for (int i = 1; i < denominations.length + 1; i++) {
+            for (int j = 1; j < change + 1; j++) {
+                int value = denominations[i - 1];
+                if (value > j) {
+                    dp[i][j] = dp[i - 1][j];
+                } else {
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - value];
+                }
+            }
+        }
+        return dp[denominations.length][change];
     }
 }
