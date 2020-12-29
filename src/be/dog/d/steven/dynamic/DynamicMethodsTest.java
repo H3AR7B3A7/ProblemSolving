@@ -135,12 +135,23 @@ class DynamicMethodsTest {
     }
 
     @Test
-    void ways_to_return_change_test(){
+    void ways_to_return_change_test() {
         assertEquals(5, DynamicMethods.numberOfWaysToGiveChange(4));
     }
 
     @Test
-    void unique_ways_to_return_change_test(){
+    void unique_ways_to_return_change_test() {
         assertEquals(3, DynamicMethods.numberOfUniqueWaysToGiveChange(4));
     }
+
+    @Test
+    void get_minimum_of_arguments_test() {
+        assertEquals(5, DynamicMethods.getMinimum(13, 12, 9, 5.5, 16, 5, 101));
+    }
+
+    @Test
+    void minimum_amount_of_coins_to_give_change_test() {
+        assertEquals(2, DynamicMethods.minimalNumberOfCoinsToMakeChange(202));
+    }
+
 }

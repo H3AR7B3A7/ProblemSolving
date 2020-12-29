@@ -389,7 +389,7 @@ public class DynamicMethods {
     }
 
     /**
-     * HELPER FUNCTION
+     * HELPER FUNCTION - GET PATH
      *
      * @param dp Results of main function
      * @param i  Current width
@@ -545,4 +545,60 @@ public class DynamicMethods {
         }
         return dp[denominations.length][change];
     }
+
+    /**
+     * FIND MINIMAL NUMBER OF COINS TO MAKE CHANGE, WITH CHANGE VALUES: 1, 2, 5, 10, 20, 50, 100, 200
+     *
+     * @param change The amount of change we need to give
+     * @return Minimal amount of coins used
+     * 1. f(i) = Minimum amount of coins used to give change
+     * 2. f(0) = 0, f(1) = 1, f(2) = 1, f(3) = 2
+     * 3. f(n) = min(1 + f(i-1), 1 + f(i-2), 1 + f(i-5), ... 1 + f(i-200)
+     * 4. Bottom-up: tabulation
+     * 5. f(n)
+     */
+    public static int minimalNumberOfCoinsToMakeChange(int change) {
+        int[] denominations = {1, 2, 5, 10, 20, 50, 100, 200};
+        int[] dp = new int[change + 1];
+        dp[0] = 0;
+        for (int i = 1; i <= change; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for (int coin : denominations) {
+                if (i - coin < 0) {
+                    continue;
+                }
+                dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+
+            }
+//            if (i >= 1){
+//                dp[i] = getMinimum(dp[i], 1 + dp[i-1]);
+//            }
+//            if (i >= 2){
+//                dp[i] = getMinimum(dp[i], 1 + dp[i-1], 1 + dp[i-2]);
+//            }
+//            if (i >= 5){
+//                dp[i] = getMinimum(dp[i], 1 + dp[i-1], 1 + dp[i-2], 1 + dp[i-5]);
+//            }
+//            ...
+        }
+        if (dp[change] == Integer.MAX_VALUE) {
+            return -1;
+        }
+        return dp[change];
+    }
+
+    /**
+     * HELPER FUNCTION - GET MINIMUM
+     *
+     * @param args Integer arguments
+     * @return Minimum value of given arguments
+     */
+    public static double getMinimum(double... args) {
+        double min = Double.MAX_VALUE;
+        for (double arg : args) {
+            min = Math.min(min, arg);
+        }
+        return min;
+    }
+
 }
