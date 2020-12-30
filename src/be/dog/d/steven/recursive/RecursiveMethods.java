@@ -58,7 +58,27 @@ public class RecursiveMethods {
             return 1;
         } else {
             return getValueAtFibonacciPosition(position - 1) + getValueAtFibonacciPosition(position - 2);
+        } // T:O(φ^n), S:O(n)
+    }
+
+    /**
+     * GET THE VALUE IN THE FIBONACCI SEQUENCE AT A GIVEN POSITION
+     *
+     * @param position The position of the value we want to get
+     * @return The value at the given position
+     */
+    public static int getValueAtFibonacciPositionImproved(int position) {
+        int[] memo = new int[position + 1];
+        if (memo[position] == 0) {
+            if (position == 0) {
+                return 0;
+            } else if (position <= 2) {
+                return 1;
+            } else {
+                memo[position] = getValueAtFibonacciPosition(position - 1) + getValueAtFibonacciPosition(position - 2);
+            }
         }
+        return memo[position]; // T:O(n), S:O(n) - See dynamic programming for bottom-up comparison
     }
 
     /**
