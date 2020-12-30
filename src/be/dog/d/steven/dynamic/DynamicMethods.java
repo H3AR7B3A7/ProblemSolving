@@ -33,7 +33,7 @@ public class DynamicMethods {
         for (int i = 1; i <= n; i++) {
             dp[i] = dp[i - 1] + i;
         }
-        return dp[n];
+        return dp[n]; // T:O(n), S:O(n)
     }
 
     /**
@@ -54,7 +54,7 @@ public class DynamicMethods {
         for (int i = 2; i <= numberOfStairs; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
-        return dp[numberOfStairs];
+        return dp[numberOfStairs]; // T:O(n), S:O(n)
     }
 
     /**
@@ -69,7 +69,7 @@ public class DynamicMethods {
             a = b;
             b = c;
         }
-        return c;
+        return c; // T:O(n), S:O(1)
     }
 
     /**
@@ -91,7 +91,7 @@ public class DynamicMethods {
         for (int i = 3; i <= numberOfStairs; i++) {
             dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
         }
-        return dp[numberOfStairs];
+        return dp[numberOfStairs]; // T:O(n), S:O(n)
     }
 
     /**
@@ -114,7 +114,7 @@ public class DynamicMethods {
                 dp[i] += dp[i - j];
             }
         }
-        return dp[numberOfStairs];
+        return dp[numberOfStairs]; // T:O(n^2), S:O(n) ???
     }
 
     /**
@@ -128,7 +128,7 @@ public class DynamicMethods {
                 dp[i % maxStepSize] += dp[(i - j) % maxStepSize];
             }
         }
-        return dp[numberOfStairs % maxStepSize];
+        return dp[numberOfStairs % maxStepSize]; // T:O(n^2), S:O(1) ???
     }
 
     /**
@@ -157,7 +157,7 @@ public class DynamicMethods {
                 }
             }
         }
-        return dp[numberOfStairs % maxStepSize];
+        return dp[numberOfStairs % maxStepSize]; // T:O(n^2), S:O(1) ???
     }
 
     /**
@@ -190,7 +190,7 @@ public class DynamicMethods {
                 }
             }
         }
-        return dp[numberOfStairs % maxStepSize];
+        return dp[numberOfStairs % maxStepSize]; // T:O(n^2), S:O(1) ???
     }
 
     /**
@@ -212,7 +212,7 @@ public class DynamicMethods {
         for (int i = 2; i <= prices.length; i++) {
             dp[i] = Math.min(dp[i - 1], dp[i - 2]) + prices[i - 1];
         }
-        return dp[prices.length];
+        return dp[prices.length]; // T:O(n), S:O(n)
     }
 
     /**
@@ -227,7 +227,7 @@ public class DynamicMethods {
             a = b;
             b = c;
         }
-        return c;
+        return c; // T:O(n), S:O(1)
     }
 
     /**
@@ -252,10 +252,10 @@ public class DynamicMethods {
         }
         List<Integer> path = new ArrayList<>();
         for (int i = prices.length; i > 0; i = origins[i]) {
-            path.add(i);
+            path.add(i); // T:O(n), S:O(n)
         }
         Collections.reverse(path);
-        return path;
+        return path; // T:O(2n), S:O(2n) ???
     }
 
     /**
@@ -286,7 +286,7 @@ public class DynamicMethods {
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return dp[w - 1][h - 1];
+        return dp[w - 1][h - 1]; // T:O(m*n), S:O(m*n)
     }
 
     /**
@@ -323,7 +323,7 @@ public class DynamicMethods {
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return dp[w - 1][h - 1];
+        return dp[w - 1][h - 1]; // T:O(m*n), S:O(m*n)
     }
 
     /**
@@ -354,7 +354,7 @@ public class DynamicMethods {
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return dp[w - 1][h - 1];
+        return dp[w - 1][h - 1]; // T:O(m*n), S:O(m*n)
     }
 
     /**
@@ -385,7 +385,7 @@ public class DynamicMethods {
             }
         }
         System.out.println(Arrays.deepToString(dp));
-        return getPath(dp, w - 1, h - 1);
+        return getPath(dp, w - 1, h - 1); // T:O(2*m*n), S:O(2*m*n) ???
     }
 
     /**
@@ -438,7 +438,7 @@ public class DynamicMethods {
                 dp[i][j] = dp[i - 1][1 - j] + dp[i - 2][1 - j];
             }
         }
-        return dp[n][0] + dp[n][1];
+        return dp[n][0] + dp[n][1];  // T:O(n), S:O(n)
     }
 
     /**
@@ -459,7 +459,7 @@ public class DynamicMethods {
         for (int i = 2; i <= position; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
-        return dp[position];
+        return dp[position]; // T:O(n), S:O(n)
     }
 
     /**
@@ -485,7 +485,7 @@ public class DynamicMethods {
                         getValueAtFibonacciPositionTopDown(position - 2);
             }
         }
-        return memo[position];
+        return memo[position]; // T:O(n), S:O(n)
     }
 
     /**
@@ -511,7 +511,7 @@ public class DynamicMethods {
                 }
             }
         }
-        return dp[change];
+        return dp[change];  // T:O(n), S:O(n) only on low values
     }
 
     /**
@@ -543,7 +543,7 @@ public class DynamicMethods {
                 }
             }
         }
-        return dp[denominations.length][change];
+        return dp[denominations.length][change];  // T:O(n), S:O(n) only on low values
     }
 
     /**
@@ -589,9 +589,9 @@ public class DynamicMethods {
         System.out.println(Arrays.toString(dp));
         System.out.println(Arrays.toString(origins));
 
-        printPath(origins);
+        printPath(origins); // !!!
 
-        return dp[change];
+        return dp[change]; // T:O(n), S:O(n) always (2n on low values)
     }
 
     /**
