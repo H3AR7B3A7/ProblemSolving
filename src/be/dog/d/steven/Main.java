@@ -9,7 +9,7 @@ public class Main {
          * StoneGameVII
          */
         int[] array = new int[]{1, 100, 1};
-        System.out.println(new StoneGameDynamicSolution().stoneGameVII(array)); // Expected: 1
+        System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 1
         array = new int[]{7, 90, 5, 1, 100, 10, 10, 2};
         System.out.println(new StoneGameSolution().stoneGameVII(array)); // Expected: 122
         array = new int[]{5, 3, 1, 4, 2};
