@@ -35,6 +35,12 @@ public class Node {
         this.right = right;
     }
 
+    /**
+     * GET THE MAXIMUM LEVEL SUM AND THE LEVEL
+     *
+     * @param rootNode The root node of the binary tree
+     * @return String declaring the maximum level sum and the level where we can find it
+     */
     public static String maxSum(Node rootNode) {
 
         if (rootNode == null) {
@@ -74,6 +80,12 @@ public class Node {
         return "Highest sum is " + highestSum + " at level: " + level;
     }
 
+    /**
+     * GET THE MINIMUM LEVEL SUM AND THE LEVEL
+     *
+     * @param rootNode The root node of the binary tree
+     * @return String declaring the minimum level sum and the level where we can find it
+     */
     public static String minSum(Node rootNode) {
 
         if (rootNode == null) {
@@ -113,6 +125,11 @@ public class Node {
         return "Lowest sum is " + lowestSum + " at level: " + level;
     }
 
+    /**
+     * INVERSE A BINARY TREE
+     *
+     * @param rootNode The root node of the binary tree to inverse
+     */
     public static void inverseBinaryTree(Node rootNode) {
         Queue<Node> queue = new LinkedList<>();
         if (rootNode != null) {
@@ -133,6 +150,28 @@ public class Node {
             node.setLeft(node.getRight());
             node.setRight(temp);
         }
+    }
+
+    /**
+     * MERGE TWO BINARY TREES TOGETHER, EACH NODE IN THE RESULTING TREE BEING THE SUM OF THE NODES OF THE INPUT TREES
+     *
+     * @param rootNode1 The root node of the first tree
+     * @param rootNode2 The root node of the second tree to be merged with the first
+     * @return Merged tree
+     */
+    public static Node sumOfTrees(Node rootNode1, Node rootNode2) {
+        if (rootNode1 == null && rootNode2 == null) {
+            return null;
+        } else if (rootNode1 == null) {
+            return rootNode2;
+        } else if (rootNode2 == null) {
+            return rootNode1;
+        } else {
+            rootNode1.data += rootNode2.data;
+            rootNode1.left = sumOfTrees(rootNode1.left, rootNode2.left);
+            rootNode1.right = sumOfTrees(rootNode1.right, rootNode2.right);
+            return rootNode1;
+        } // T:O(n), S:O(n)
     }
 
     @Override
