@@ -126,4 +126,24 @@ public class NumberMethods {
         return new int[]{number1, number2}; // T:O(n), S:O(1)
     }
 
+    /**
+     * FIND TWO ADDENDS IN ARRAY OF TARGET SUM
+     * @param nums Array with numbers holding one set of addends that sum up to target
+     * @param target Target for the 2 addends to add up to
+     * @return Array holding the positions of the 2 addends in nums
+     */
+    public static int[] findTwoAddendsOfTargetSum(int[] nums, int target) {
+        int[] addends = new int[2];
+        outer:
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] + nums[i] == target) {
+                    addends[0] = i;
+                    addends[1] = j;
+                    break outer;
+                }
+            }
+        }
+        return addends;
+    }
 }

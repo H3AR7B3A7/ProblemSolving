@@ -46,4 +46,9 @@ class NumberMethodsTest {
         assertEquals(Arrays.toString(new int[]{4, 8}), Arrays.toString(NumberMethods.findNumbersWithoutDouble2(nums)));
     }
 
+    @Test
+    void find_two_addends_of_target_sum_test() {
+        int[] nums = {2, 7, 11, 15};
+        assertEquals(Arrays.toString(new int[]{0, 1}), Arrays.toString(NumberMethods.findTwoAddendsOfTargetSum(nums, 9)));
+    }
 }
