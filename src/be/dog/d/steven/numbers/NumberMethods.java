@@ -47,6 +47,43 @@ public class NumberMethods {
     }
 
     /**
+     * FIND NTH NUMBER OF WHICH THE DIGITS ADD UP TO 10
+     *
+     * @param n Position of the number fitting requirements
+     * @return The number with digits adding up to 10
+     */
+    public static int findNumberWithSumOfDigitsTen(int n) {
+        int count = 0;
+        int result = 0;
+        for (int i = 0; count < n; i++) {
+            String next = String.valueOf(i);
+            int[] array = new int[next.length()];
+            for (int j = 0; j < next.length(); j++) {
+                array[j] = Integer.parseInt(String.valueOf(next.charAt(j)));
+            }
+            int sum = Arrays.stream(array).sum();
+            if (sum == 10) {
+                result = i;
+                count++;
+            }
+        }
+        return result;
+    }
+
+    public static int findNumberWithSumOfDigits10(int n) {
+        int count = 0;
+        for (int next = 1; ; next++) {
+            int sum = 0;
+            for (int x = next; x > 0; x = x / 10)
+                sum = sum + x % 10;
+            if (sum == 10)
+                count++;
+            if (count == n)
+                return next;
+        }
+    }
+
+    /**
      * IN AN ARRAY OF INTEGERS, FIND THE TWO INTEGERS THAT APPEAR ONLY ONCE
      *
      * @param numbers The array containing integers with only 2 appearing once
@@ -88,6 +125,5 @@ public class NumberMethods {
         }
         return new int[]{number1, number2}; // T:O(n), S:O(1)
     }
-
 
 }
