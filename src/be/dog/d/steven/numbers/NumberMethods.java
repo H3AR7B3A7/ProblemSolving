@@ -209,4 +209,31 @@ public class NumberMethods {
         }
         return raises;
     }
+
+    /**
+     * GIVEN A LINKED LIST, REMOVE ALL CONSECUTIVE NODES THAT SUM TO ZERO
+     *
+     * @param nums Linked list with positive and negative integers
+     * @return Linked list with remaining numbers
+     */
+    public static LinkedList<Integer> removeConsecutiveNumberSumsOfZero(LinkedList<Integer> nums) {
+        int sum = 0;
+        List<Integer> mark = new ArrayList<>();
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i; j < nums.size(); j++) {
+                sum += nums.get(j);
+                if (sum == 0 && !mark.contains(nums.indexOf(nums.get(i)))) {
+                    for (int k = i; k <= j; k++) {
+                        mark.add(k);
+                    }
+                }
+            }
+            sum = 0;
+        }
+        Collections.reverse(mark);
+        for (int i : mark) {
+            nums.remove(i);
+        }
+        return nums;
+    }
 }

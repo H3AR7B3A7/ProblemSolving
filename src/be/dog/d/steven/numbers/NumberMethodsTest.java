@@ -3,8 +3,9 @@ package be.dog.d.steven.numbers;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NumberMethodsTest {
 
@@ -53,12 +54,36 @@ class NumberMethodsTest {
     }
 
     @Test
-    void test() {
+    void find_minimal_raises_comparing_lines_of_code_of_neighbors_test() {
         int[] nums = {10, 40, 200, 1000, 60, 30};
         assertEquals(Arrays.toString(new int[]{1, 2, 3, 4, 2, 1}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
         nums = new int[]{10, 10, 30, 20, 10, 50};
         assertEquals(Arrays.toString(new int[]{1, 1, 3, 2, 1, 2}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
         nums = new int[]{10, 20, 10, 20, 10, 20, 10};
         assertEquals(Arrays.toString(new int[]{1, 2, 1, 2, 1, 2, 1}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
+    }
+
+    @Test
+    void remove_consecutive_sums_of_zero_test() {
+        LinkedList<Integer> nums = new LinkedList<>();
+        nums.add(3);
+        nums.add(4);
+        nums.add(-7);
+        nums.add(5);
+        nums.add(-6);
+        nums.add(6);
+        LinkedList<Integer> expected = new LinkedList<>();
+        expected.add(5);
+        assertEquals(expected, NumberMethods.removeConsecutiveNumberSumsOfZero(nums));
+        nums = new LinkedList<>();
+        nums.add(1);
+        nums.add(2);
+        nums.add(-3);
+        nums.add(3);
+        nums.add(1);
+        expected = new LinkedList<>();
+        expected.add(3);
+        expected.add(1);
+        assertEquals(expected, NumberMethods.removeConsecutiveNumberSumsOfZero(nums));
     }
 }
