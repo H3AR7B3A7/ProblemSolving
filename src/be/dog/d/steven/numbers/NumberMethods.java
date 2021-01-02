@@ -152,13 +152,13 @@ public class NumberMethods {
      * THE MINIMAL RAISE A COMPANY COULD GIVE IF THEY WANT NEIGHBORING WORKERS TO EARN MORE THEN THEIR
      * PEERS WHO PRODUCED LESS CODE NEXT TO THEM (Supposedly easy challenge)
      *
-     * @param lines The lines each worker produces
+     * @param lines The lines of code produced by a row of worker at the company
      * @return Minimal raise for each worker
      */
     public static int[] minimalRaiseComparedToNeighborsLines(int[] lines) {
         int[] raises = new int[lines.length];
 
-        int[][] segments = new int[lines.length-1][];
+        int[][] segments = new int[lines.length - 1][];
         boolean asc = true;
         int last = 1;
         int count = 0;
