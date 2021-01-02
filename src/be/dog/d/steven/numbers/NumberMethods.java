@@ -128,7 +128,8 @@ public class NumberMethods {
 
     /**
      * FIND TWO ADDENDS IN ARRAY OF TARGET SUM
-     * @param nums Array with numbers holding one set of addends that sum up to target
+     *
+     * @param nums   Array with numbers holding one set of addends that sum up to target
      * @param target Target for the 2 addends to add up to
      * @return Array holding the positions of the 2 addends in nums
      */
@@ -145,5 +146,67 @@ public class NumberMethods {
             }
         }
         return addends;
+    }
+
+    /**
+     * THE MINIMAL RAISE A COMPANY COULD GIVE IF THEY WANT NEIGHBORING WORKERS TO EARN MORE THEN THEIR
+     * PEERS WHO PRODUCED LESS CODE NEXT TO THEM (Supposedly easy challenge)
+     *
+     * @param lines The lines each worker produces
+     * @return Minimal raise for each worker
+     */
+    public static int[] minimalRaiseComparedToNeighborsLines(int[] lines) {
+        int[] raises = new int[lines.length];
+
+        int[][] segments = new int[lines.length-1][];
+        boolean asc = true;
+        int last = 1;
+        int count = 0;
+
+        for (int i = 1; i < lines.length; i++) {
+            if (asc) {
+                if (lines[i] < lines[i - 1]) {
+                    asc = false;
+                    segments[count] = Arrays.copyOfRange(lines, last - 1, i);
+                    last = i;
+                    count++;
+                }
+            } else {
+                if (lines[i] >= lines[i - 1]) {
+                    asc = true;
+                    segments[count] = Arrays.copyOfRange(lines, last - 1, i);
+                    last = i;
+                    count++;
+                }
+            }
+        }
+        segments[count] = Arrays.copyOfRange(lines, last - 1, lines.length);
+        System.out.println(Arrays.deepToString(segments));
+
+        raises[0] = 1;
+        count = 0;
+        asc = true;
+        for (int[] segment : segments) {
+            if (segment != null) {
+                if (asc) {
+                    for (int i = 1; i < segment.length + 1; i++) {
+                        if ((i + count - 2) < 0 || lines[i + count - 1] != lines[i + count - 2]) {
+                            raises[i + count - 1] = Math.max(i, raises[i + count - 1]);
+                        } else {
+                            raises[i + count - 1] = raises[i + count - 2];
+                        }
+                    }
+                    count += segment.length - 1;
+                    asc = false;
+                } else {
+                    for (int i = segment.length; i > 0; i--) {
+                        raises[(segment.length - i) + count] = Math.max(i, raises[(segment.length - i) + count]);
+                    }
+                    count += segment.length - 1;
+                    asc = true;
+                }
+            }
+        }
+        return raises;
     }
 }

@@ -51,4 +51,14 @@ class NumberMethodsTest {
         int[] nums = {2, 7, 11, 15};
         assertEquals(Arrays.toString(new int[]{0, 1}), Arrays.toString(NumberMethods.findTwoAddendsOfTargetSum(nums, 9)));
     }
+
+    @Test
+    void test() {
+        int[] nums = {10, 40, 200, 1000, 60, 30};
+        assertEquals(Arrays.toString(new int[]{1, 2, 3, 4, 2, 1}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
+        nums = new int[]{10, 10, 30, 20, 10, 50};
+        assertEquals(Arrays.toString(new int[]{1, 1, 3, 2, 1, 2}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
+        nums = new int[]{10, 20, 10, 20, 10, 20, 10};
+        assertEquals(Arrays.toString(new int[]{1, 2, 1, 2, 1, 2, 1}), Arrays.toString(NumberMethods.minimalRaiseComparedToNeighborsLines(nums)));
+    }
 }
