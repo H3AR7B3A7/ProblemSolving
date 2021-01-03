@@ -86,4 +86,9 @@ class NumberMethodsTest {
         expected.add(1);
         assertEquals(expected, NumberMethods.removeConsecutiveNumberSumsOfZero(nums));
     }
+
+    @Test
+    void reverse_integer_test(){
+        assertEquals(64321, NumberMethods.reverseInteger(12346));
+    }
 }

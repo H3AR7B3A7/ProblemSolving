@@ -236,4 +236,15 @@ public class NumberMethods {
         }
         return nums;
     }
+
+    public static int reverseInteger(int toReverse){
+        long result = 0;
+        while (toReverse != 0) {
+            result = result * 10 + toReverse % 10;
+            toReverse /= 10;
+        }
+        if (result > Integer.MAX_VALUE || result < Integer.MIN_VALUE)
+            return 0;
+        return (int) result;
+    }
 }
