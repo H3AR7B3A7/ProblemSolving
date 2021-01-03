@@ -222,8 +222,8 @@ public class NumberMethods {
         for (int i = 0; i < nums.size(); i++) {
             for (int j = i; j < nums.size(); j++) {
                 sum += nums.get(j);
-                if (sum == 0 && !mark.contains(nums.indexOf(nums.get(i)))) {
-                    for (int k = i; k <= j; k++) {
+                if (sum == 0) {
+                    for (int k = i; k <= j && !mark.contains(k); k++) {
                         mark.add(k);
                     }
                 }
