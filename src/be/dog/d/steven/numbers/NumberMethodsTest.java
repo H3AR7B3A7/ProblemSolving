@@ -88,7 +88,12 @@ class NumberMethodsTest {
     }
 
     @Test
-    void reverse_integer_test(){
+    void reverse_integer_test() {
         assertEquals(64321, NumberMethods.reverseInteger(12346));
+    }
+
+    @Test
+    void reverse_negative_integer_test() {
+        assertEquals(-9594, NumberMethods.reverseInteger(-4959));
     }
 }
