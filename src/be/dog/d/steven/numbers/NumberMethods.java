@@ -237,7 +237,13 @@ public class NumberMethods {
         return nums;
     }
 
-    public static int reverseInteger(int toReverse){
+    /**
+     * REVERSE AN INTEGER
+     *
+     * @param toReverse The integer that is to be reversed
+     * @return The reverse of a given integer
+     */
+    public static int reverseInteger(int toReverse) {
         long result = 0;
         while (toReverse != 0) {
             result = result * 10 + toReverse % 10;
@@ -247,4 +253,5 @@ public class NumberMethods {
             return 0;
         return (int) result;
     }
+
 }
