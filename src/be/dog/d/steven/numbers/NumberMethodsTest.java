@@ -96,4 +96,10 @@ class NumberMethodsTest {
     void reverse_negative_integer_test() {
         assertEquals(-9594, NumberMethods.reverseInteger(-4959));
     }
+
+    @Test
+    void minimum_number_of_classrooms_test(){
+        int[][] timeIntervals = {{30,75},{0,50},{60,150}};
+        assertEquals(2, NumberMethods.minimumClassrooms(timeIntervals));
+    }
 }

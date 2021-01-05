@@ -254,4 +254,29 @@ public class NumberMethods {
         return (int) result;
     }
 
+    /**
+     * FIND MINIMAL AMOUNT OF CLASSROOMS FOR GIVEN ARRAY OF TIME INTERVALS OF COURSES
+     *
+     * @param timeIntervals The time intervals of courses in random order
+     * @return The minimum amount of classrooms needed to hold all courses
+     */
+    public static int minimumClassrooms(int[][] timeIntervals) {
+        Arrays.sort(timeIntervals, Comparator.comparing((int[] interval) -> interval[0]));
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        int classroomCount = 0;
+        for (int[] interval : timeIntervals) {
+            if (heap.isEmpty()) {
+                classroomCount++;
+            } else {
+                if (interval[0] >= heap.peek()) {
+                    heap.poll();
+                } else {
+                    classroomCount++;
+                }
+            }
+            heap.offer(interval[1]);
+        }
+        return classroomCount;
+    }
+
 }
