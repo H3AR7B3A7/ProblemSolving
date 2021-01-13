@@ -154,4 +154,11 @@ class DynamicMethodsTest {
         assertEquals(3, DynamicMethods.minimalNumberOfCoinsToMakeChange(225));
     }
 
+    @Test
+    void triangular_number_test() {
+        assertEquals(23220, DynamicMethods.triangleNumber(215));
+        assertEquals(1, DynamicMethods.triangleNumber(1));
+        assertEquals(0, DynamicMethods.triangleNumber(0));
+    }
+
 }

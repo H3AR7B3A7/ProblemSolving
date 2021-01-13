@@ -98,8 +98,22 @@ class NumberMethodsTest {
     }
 
     @Test
-    void minimum_number_of_classrooms_test(){
-        int[][] timeIntervals = {{30,75},{0,50},{60,150}};
+    void minimum_number_of_classrooms_test() {
+        int[][] timeIntervals = {{30, 75}, {0, 50}, {60, 150}};
         assertEquals(2, NumberMethods.minimumClassrooms(timeIntervals));
+    }
+
+    @Test
+    void triangular_number_test() {
+        assertEquals(23220, NumberMethods.triangleNumber(215));
+        assertEquals(1, NumberMethods.triangleNumber(1));
+        assertEquals(0, NumberMethods.triangleNumber(0));
+    }
+
+    @Test
+    void triangular_number_2_test() {
+        assertEquals(23220, NumberMethods.triangleNumber2(215));
+        assertEquals(1, NumberMethods.triangleNumber2(1));
+        assertEquals(0, NumberMethods.triangleNumber2(0));
     }
 }

@@ -279,4 +279,24 @@ public class NumberMethods {
         return classroomCount;
     }
 
+    /**
+     * GET THE TRIANGULAR NUMBER (NUMBER OF DOTS) FOR A GIVEN INTEGER.
+     *
+     * @param n The integer to look up the triangular number of.
+     * @return The triangular number (number of dots) for a given n.
+     */
+    public static int triangleNumber(int n) {
+        if (n == 0) return 0;
+        int j = 1, k = 1;
+        for (int i = 2; i <= n; i++) {
+            j++;
+            k = k + j;
+        }
+        return k;
+    }
+
+    public static int triangleNumber2(int n) {
+        return n * (n + 1) / 2;
+    }
+
 }

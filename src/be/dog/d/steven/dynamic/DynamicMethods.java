@@ -560,7 +560,7 @@ public class DynamicMethods {
     public static int minimalNumberOfCoinsToMakeChange(int change) {
         int[] denominations = {1, 2, 5, 10, 20, 50, 100, 200};
         int[] dp = new int[change + 1];
-        int[] origins = new int[change+1];
+        int[] origins = new int[change + 1];
         dp[0] = 0;
         for (int i = 1; i <= change; i++) {
             dp[i] = Integer.MAX_VALUE;
@@ -596,13 +596,14 @@ public class DynamicMethods {
 
     /**
      * HELPER FUNCTION - GET PATH
+     *
      * @param origins Array with origins from main function
      */
     private static void printPath(int[] origins) {
-        int last = origins[origins.length-1];
+        int last = origins[origins.length - 1];
         System.out.println(last);
-        origins = Arrays.copyOfRange(origins,0,origins.length-last);
-        if (origins.length-1 > 0){
+        origins = Arrays.copyOfRange(origins, 0, origins.length - last);
+        if (origins.length - 1 > 0) {
             printPath(origins);
         }
     }
@@ -621,4 +622,25 @@ public class DynamicMethods {
         return min;
     }
 
+    /**
+     * GET THE TRIANGULAR NUMBER (NUMBER OF DOTS) FOR A GIVEN INTEGER.
+     *
+     * @param n The integer to look up the triangular number of.
+     * @return The triangular number (number of dots) for a given n.
+     * 1. f(i) = Number of dots, or triangular number for i.
+     * 2. f(0) = 0, f(1) = 1, f(2) = 3
+     * 3. f(n) = 3*(n-1) + f(n-3)
+     * 4. Bottom-up: tabulation
+     * 5. f(n)
+     */
+    public static int triangleNumber(int n) {
+        int[] dp = new int[n + 3];
+        dp[0] = 0;
+        dp[1] = 1;
+        dp[2] = 3;
+        for (int i = 3; i <= n; i++) {
+            dp[i] = 3 * (i - 1) + dp[i - 3];
+        }
+        return dp[n];
+    }
 }
