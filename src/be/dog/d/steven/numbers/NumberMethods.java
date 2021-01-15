@@ -299,4 +299,66 @@ public class NumberMethods {
         return n * (n + 1) / 2;
     }
 
+    /**
+     * GIVEN AN ARRAY OF INTEGERS, FIND HOW MANY TRIPLES SUM TO ZERO
+     *
+     * @param numbers The array of integers
+     * @return The number of triples that sum to zero
+     */
+    public static int amountOfTriplesThatSumToZero(int[] numbers) {
+        int n = numbers.length;
+        int count = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (numbers[i] + numbers[j] + numbers[k] == 0) {
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;  // T:O(1/2 * n³), S:O(1)
+    }
+
+    public static int amountOfTriplesThatSumToZeroImproved(int[] numbers) {
+        int n = numbers.length;
+        int count = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            HashSet<Integer> s = new HashSet<Integer>();
+            for (int j = i + 1; j < n; j++) {
+                int x = -(numbers[i] + numbers[j]);
+                if (s.contains(x)) {
+                    count++;
+                } else {
+                    s.add(numbers[j]);
+                }
+            }
+        }
+        return count;  // T:O(n²), S:O(n)
+    }
+
+    public static int amountOfTriplesThatSumToZeroSorted(int[] numbers) {
+        Arrays.sort(numbers);
+        int n = numbers.length;
+        int count = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            int left = i + 1;
+            int right = n - 1;
+            int x = numbers[i];
+            while (left < right) {
+                if (x + numbers[left] + numbers[right] == 0) {
+                    left++;
+                    right--;
+                    count++;
+                } else if (x + numbers[left] + numbers[right] < 0)
+                    left++;
+                else
+                    right--;
+            }
+        }
+        return count;  // T:O(n²), S:O(1)
+    }
 }
+

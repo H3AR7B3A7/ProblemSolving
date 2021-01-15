@@ -38,4 +38,8 @@ class RecursiveMethodsTest {
                 RecursiveMethods.getNumberOfWaysToGroupWithMaxGroupSize(6, 4));
     }
 
+    @Test
+    void greatest_common_divider_test() {
+        assertEquals(6, RecursiveMethods.getGreatestCommonDivisor(24, 18));
+    }
 }

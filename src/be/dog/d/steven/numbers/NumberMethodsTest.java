@@ -116,4 +116,22 @@ class NumberMethodsTest {
         assertEquals(1, NumberMethods.triangleNumber2(1));
         assertEquals(0, NumberMethods.triangleNumber2(0));
     }
+
+    @Test
+    void amount_of_triples_that_sum_to_zero_test() {
+        int[] numbers = {30, -40, -20, -10, 40, 0, 10, 5};
+        assertEquals(4, NumberMethods.amountOfTriplesThatSumToZero(numbers));
+    }
+
+    @Test
+    void amount_of_triples_that_sum_to_zero_improved_test() {
+        int[] numbers = {30, -40, -20, -10, 40, 0, 10, 5};
+        assertEquals(4, NumberMethods.amountOfTriplesThatSumToZeroImproved(numbers));
+    }
+
+    @Test
+    void amount_of_triples_that_sum_to_zero_sorted_test() {
+        int[] numbers = {30, -40, -20, -10, 40, 0, 10, 5};
+        assertEquals(4, NumberMethods.amountOfTriplesThatSumToZeroSorted(numbers));
+    }
 }

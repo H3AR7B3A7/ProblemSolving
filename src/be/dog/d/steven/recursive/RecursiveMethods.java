@@ -101,4 +101,17 @@ public class RecursiveMethods {
         }
     }
 
+    /**
+     * FIND THE GREATEST COMMON DIVIDER OF 2 INTEGERS
+     *
+     * @param a First integer
+     * @param b Second integer
+     * @return Greatest common divider
+     */
+    public static int getGreatestCommonDivisor(int a, int b) {
+        if (b == 0) return a;
+        int r = a % b;
+        return getGreatestCommonDivisor(b, r);
+    }
+
 }
