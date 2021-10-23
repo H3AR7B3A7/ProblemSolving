@@ -360,5 +360,49 @@ public class NumberMethods {
         }
         return count;  // T:O(n²), S:O(1)
     }
-}
 
+    public static int multiplicationTableAppearancesFor(int tableSize, int targetNumber) {
+        if (targetNumber < 1 || targetNumber > Math.pow(tableSize, 2)) {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 1; i <= tableSize; i++) {
+            if (targetNumber % i == 0 && targetNumber / i <= tableSize) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static int multiplicationTableAppearancesForWithNegatives(int tableSize, int targetNumber) {
+        if (targetNumber == 0) {
+            return 0;
+        }
+
+        int count = 0;
+        for (int i = 1; i <= Math.abs(tableSize); i++) {
+            if (isDivisibleBy(targetNumber, i) && divisionOfAbsoluteIsSmallerThan(targetNumber, i, tableSize)) {
+                count++;
+            }
+        }
+        return count * 2; // Times 2 for all quadrants
+    }
+
+    private static boolean divisionOfAbsoluteIsSmallerThan(int targetNumber, int i, int tableSize) {
+        return Math.abs(targetNumber) / i <= Math.abs(tableSize);
+    }
+
+    private static boolean isDivisibleBy(int targetNumber, int i) {
+        return targetNumber % i == 0;
+    }
+
+    private List<Integer> getDivisors(int targetNumber) {
+        List<Integer> divisors = new ArrayList<>();
+        for (int i = 1; i <= targetNumber; i++)
+            if (targetNumber % i == 0) {
+                divisors.add(i);
+            }
+        return divisors;
+    }
+}
